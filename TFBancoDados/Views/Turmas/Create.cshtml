@@ -1,0 +1,43 @@
+﻿@model TFBancoDados.Models.Turma
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Turma</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Horario_Inicio" class="control-label"></label>
+                <input asp-for="Horario_Inicio" class="form-control" />
+                <span asp-validation-for="Horario_Inicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Horario_Fim" class="control-label"></label>
+                <input asp-for="Horario_Fim" class="form-control" />
+                <span asp-validation-for="Horario_Fim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dia_Semana" class="control-label"></label>
+                <input asp-for="Dia_Semana" class="form-control" />
+                <span asp-validation-for="Dia_Semana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

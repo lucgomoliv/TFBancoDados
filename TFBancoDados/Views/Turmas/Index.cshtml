@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TFBancoDados.Models.Turma>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario_Inicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario_Fim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dia_Semana)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Horario_Inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Horario_Fim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia_Semana)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id_Turma">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id_Turma">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id_Turma">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
