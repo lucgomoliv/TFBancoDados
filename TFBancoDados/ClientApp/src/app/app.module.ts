@@ -7,18 +7,24 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { TesteComponent } from './teste/teste.component';
+import { ProfessoresComponent } from './professores/professores.component';
+import { CursosComponent } from './cursos/cursos.component';
+import { DisciplinasComponent } from './disciplinas/disciplinas.component';
+import { PeriodosComponent } from './periodos/periodos.component';
+import { SalasComponent } from './salas/salas.component';
+import { TurmasComponent } from './turmas/turmas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    TesteComponent
+    ProfessoresComponent,
+    CursosComponent,
+    DisciplinasComponent,
+    PeriodosComponent,
+    SalasComponent,
+    TurmasComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,8 +32,12 @@ import { TesteComponent } from './teste/teste.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'professor', component: ProfessoresComponent },
+      { path: 'curso', component: CursosComponent },
+      { path: 'disciplina', component: DisciplinasComponent },
+      { path: 'periodo', component: PeriodosComponent },
+      { path: 'sala', component: SalasComponent },
+      { path: 'turma', component: TurmasComponent },
     ])
   ],
   providers: [],
