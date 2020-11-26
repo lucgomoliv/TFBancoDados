@@ -1,35 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { GeneralService } from '../general.service';
+import { BaseComponent } from '../base/base.component';
+
+export class Professor {
+  Id_Professor = 0;
+  Nome = 'a';
+}
 
 @Component({
   selector: 'app-professores',
-  templateUrl: './professores.component.html',
+  templateUrl: '../base/base.component.html',
   styleUrls: ['./professores.component.css']
 })
-export class ProfessoresComponent implements OnInit {
+export class ProfessoresComponent extends BaseComponent {
 
-  constructor(private service: GeneralService) {}
-
-  items = [];
-
-  Professor: Professor;
+  item = new Professor();
 
   headers = [
     {name: 'Id_Professor', display: 'ID'},
     {name: 'Nome', display: 'Nome'}
   ];
-
-  ngOnInit() {
-    this.getProfessores();
-  }
-
-  getProfessores() {
-    this.service.getProfessores().subscribe(data => this.items = data);
-  }
-
-}
-
-export class Professor {
-  Id_Professor: number;
-  Nome: string;
 }

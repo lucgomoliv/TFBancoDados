@@ -1,30 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { GeneralService } from '../general.service';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-periodos',
-  templateUrl: './periodos.component.html',
+  templateUrl: '../base/base.component.html',
   styleUrls: ['./periodos.component.css']
 })
-export class PeriodosComponent implements OnInit {
-
-  constructor(private service: GeneralService) {}
-
-  items = [];
+export class PeriodosComponent extends BaseComponent {
 
   item: Periodo;
 
   headers = [
     {name: 'Id_Periodo', display: 'ID'},
   ];
-
-  ngOnInit() {
-    this.getPeriodos();
-  }
-
-  getPeriodos() {
-    this.service.getPeriodos().subscribe(data => this.items = data);
-  }
 
 }
 

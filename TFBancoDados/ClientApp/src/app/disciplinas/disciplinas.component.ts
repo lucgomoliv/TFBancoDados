@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { GeneralService } from '../general.service';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-disciplinas',
-  templateUrl: './disciplinas.component.html',
+  templateUrl: '../base/base.component.html',
   styleUrls: ['./disciplinas.component.css']
 })
-export class DisciplinasComponent implements OnInit {
-
-  constructor(private service: GeneralService) {}
-
-  items = [];
+export class DisciplinasComponent extends BaseComponent {
 
   item: Disciplina;
 
@@ -18,14 +14,6 @@ export class DisciplinasComponent implements OnInit {
     {name: 'Id_Materia', display: 'ID'},
     {name: 'Nome_Materia', display: 'Nome'},
   ];
-
-  ngOnInit() {
-    this.getDisciplinas();
-  }
-
-  getDisciplinas() {
-    return this.service.getDisciplinas().subscribe(data => this.items = data);
-  }
 
 }
 

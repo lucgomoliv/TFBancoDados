@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { GeneralService } from '../general.service';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-turmas',
-  templateUrl: './turmas.component.html',
+  templateUrl: '../base/base.component.html',
   styleUrls: ['./turmas.component.css']
 })
-export class TurmasComponent implements OnInit {
-
-  constructor(private service: GeneralService) {}
-
-  items = [];
+export class TurmasComponent extends BaseComponent {
 
   item: Turma;
 
@@ -20,15 +16,6 @@ export class TurmasComponent implements OnInit {
     {name: 'Horario_Fim', display: 'Horário de Fim'},
     {name: 'Dia_Semana', display: 'Dia da Semana'},
   ];
-
-  ngOnInit() {
-    this.getTurmas();
-  }
-
-  getTurmas() {
-    this.service.getTurmas().subscribe(data => this.items = data);
-  }
-
 }
 
 export class Turma {

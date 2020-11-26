@@ -13,6 +13,7 @@ import { DisciplinasComponent } from './disciplinas/disciplinas.component';
 import { PeriodosComponent } from './periodos/periodos.component';
 import { SalasComponent } from './salas/salas.component';
 import { TurmasComponent } from './turmas/turmas.component';
+import { BaseComponent } from './base/base.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TurmasComponent } from './turmas/turmas.component';
     PeriodosComponent,
     SalasComponent,
     TurmasComponent,
+    BaseComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

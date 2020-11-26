@@ -9,13 +9,24 @@ export class GeneralService {
 
   constructor(private http: HttpClient) { }
 
+  gets(component: string) {
+    switch (component) {
+      case 'ProfessoresComponent': return this.getProfessores();
+      case 'TurmasComponent': return this.getTurmas();
+      case 'SalasComponent': return this.getSalas();
+      case 'PeriodosComponent': return this.getPeriodos();
+      case 'DisciplinasComponent': return this.getDisciplinas();
+      case 'CursosComponent': return this.getCursos();
+    }
+  }
+
   getProfessores(): Observable<any> {
     return this.http.get('professores');
   }
-  putProfessore(id: number): Observable<any> {
+  putProfessores(id: number): Observable<any> {
     return this.http.put('professores', id);
   }
-  postProfessore(object): Observable<any> {
+  postProfessores(object): Observable<any> {
     return this.http.post('professores', object);
   }
   getCursos(): Observable<any> {
