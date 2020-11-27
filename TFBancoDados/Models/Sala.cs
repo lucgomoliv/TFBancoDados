@@ -11,5 +11,6 @@ namespace TFBancoDados.Models
         [Key]
         [Required]
         public int Id_Sala { get; set; }
+        public ICollection<Ofertar_Turma_Disciplina_Sala> ofertar_Turma_Disciplina_Sala { get; set; }
     }
 }

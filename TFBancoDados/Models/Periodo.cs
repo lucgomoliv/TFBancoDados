@@ -11,5 +11,7 @@ namespace TFBancoDados.Models
         [Key]
         [Required]
         public int Id_Periodo { get; set; }
+        public ICollection<Possui> possui { get; set; }
+        public ICollection<Pertence> pertence { get; set; }
     }
 }

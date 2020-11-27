@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace TFBancoDados.Models
 {
-    public class Curso
+    public class Possui
     {
-        [Key]
-        public int Id_Curso { get; set; }
-        [Required]
-        [Column(TypeName = "varchar(50)")]
-        public string Nome_Curso { get; set; }
-        public ICollection<Possui> possui { get; set; }
+        public int fk_Periodo_Id_Periodo { get; set; }
+        public int fk_Curso_Id_Curso { get; set; }
+        public Curso curso { get; set; }
+        public Periodo periodo { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 <div>
   <h1>Lista de {{ this.name }}
-    <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal">Adicionar</button>
+    <button id="btnAddModal" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal">Adicionar</button>
   </h1>
 </div>
 
@@ -15,7 +15,7 @@
         <svg *ngIf="column.name == headers[headers.length-1].name" (click)="delete(row[objectKeys(row)[0]])" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill float-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
         </svg>
-        <svg *ngIf="column.name == headers[headers.length-1].name" (click)="item = row; openModal()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square float-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg *ngIf="column.name == headers[headers.length-1].name" (click)="item = objectToItem(row); openModal()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square float-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
           <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
         </svg>
@@ -28,7 +28,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addModalLabel">Adicionar {{ this.name }}</h5>
+        <h5 class="modal-title" id="addModalLabel">{{(editar ? 'Editar ' : 'Adicionar ' + this.name)}}</h5>
         <button (click)="resetModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -40,10 +40,22 @@
                  required
                  [(ngModel)]="item[key]" name="{{key}}">
         </div>
+        <div *ngFor="let key of interaction" class="form-group">
+          <label for="key">{{display(key)}}</label>
+          <select type="text" class="form-control" id="{{key}}"
+                 required
+                 [(ngModel)]="option">
+                 <option *ngFor="let opt of options[key]" value="{{opt[objectKeys(opt)[0]]}}">{{opt[objectKeys(opt)[0]]}}</option>
+          </select>
+          <svg (click)="addId(numberParse(option));" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-square-fill float-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+          </svg>
+          <p>{{key + 's: ' + interactionIds.toString()}}</p>
+        </div>
       </div>
       <div class="modal-footer">
-        <button (click)="resetModel()" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button (click)="post(); resetModel()" type="button" class="btn btn-primary">Adicionar</button>
+        <button id="btnCancel" (click)="resetModel()" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button (click)="post(); resetModel(); closeModal()" type="button" class="btn btn-primary">{{(editar ? 'Editar' : 'Adicionar')}}</button>
       </div>
     </div>
   </div>

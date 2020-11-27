@@ -64,7 +64,7 @@ namespace TFBancoDados
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id1?}/{id2?}/{id3?}");
             });
 
             app.UseSpa(spa =>

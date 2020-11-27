@@ -18,5 +18,8 @@ namespace TFBancoDados.Models
         [Required]
         [Column(TypeName = "varchar(3)")]
         public string Dia_Semana { get; set; }
+        public ICollection<Pertence> pertence { get; set; }
+        public ICollection<Lecionar> lecionar { get; set; }
+        public ICollection<Ofertar_Turma_Disciplina_Sala> ofertar_Turma_Disciplina_Sala { get; set; }
     }
 }

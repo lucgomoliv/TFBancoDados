@@ -14,5 +14,6 @@ namespace TFBancoDados.Models
         [Required]
         [Column(TypeName = "varchar(50)")]
         public string Nome { get; set; }
+        public ICollection<Lecionar> lecionar { get; set; }
     }
 }

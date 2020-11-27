@@ -14,5 +14,6 @@ namespace TFBancoDados.Models
         [Required]
         [Column(TypeName = "varchar(30)")]
         public string Nome_Materia { get; set; }
+        public ICollection<Ofertar_Turma_Disciplina_Sala> ofertar_Turma_Disciplina_Sala { get; set; }
     }
 }
