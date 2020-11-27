@@ -8,7 +8,7 @@ import { BaseComponent } from '../base/base.component';
 })
 export class TurmasComponent extends BaseComponent {
 
-  item: Turma;
+  item = new Turma();
 
   headers = [
     {name: 'Id_Turma', display: 'ID'},
@@ -19,8 +19,8 @@ export class TurmasComponent extends BaseComponent {
 }
 
 export class Turma {
-  Id_Turma: number;
-  Horario_Inicio: string;
-  Horario_Fim: string;
-  Dia_Semana: string;
+  Id_Turma = 0;
+  Horario_Inicio = '';
+  Horario_Fim = '';
+  Dia_Semana = '';
 }

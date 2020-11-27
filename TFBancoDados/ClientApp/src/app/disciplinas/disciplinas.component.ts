@@ -8,7 +8,7 @@ import { BaseComponent } from '../base/base.component';
 })
 export class DisciplinasComponent extends BaseComponent {
 
-  item: Disciplina;
+  item = new Disciplina();
 
   headers = [
     {name: 'Id_Materia', display: 'ID'},
@@ -18,6 +18,6 @@ export class DisciplinasComponent extends BaseComponent {
 }
 
 export class Disciplina {
-  Id_Materia: number;
-  Nome_Materia: string;
+  Id_Materia = 0;
+  Nome_Materia = '';
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GeneralService } from '../general.service';
+import * from 'jquery-modal';
 
 @Component({
   selector: 'app-base',
@@ -12,7 +13,10 @@ export class BaseComponent implements OnInit {
 
   name = this.constructor.name.replace('Component', '');
 
-  loaded = false;
+  @ViewChild('addModal', {static: false}) el: ElementRef;
+
+  objectKeys = Object.keys;
+  numberParse = Number.parseInt;
 
   items = [];
 
@@ -23,8 +27,6 @@ export class BaseComponent implements OnInit {
   ];
 
   ngOnInit() {
-    console.log(this.item);
-    console.log(Object.keys(this.item));
     this.get();
   }
 
@@ -32,4 +34,37 @@ export class BaseComponent implements OnInit {
     this.service.gets(this.constructor.name).subscribe(data => this.items = data);
   }
 
+  post() {
+    this.fixID();
+    this.service.posts(this.constructor.name, this.item)
+      .subscribe(() => null, () => null, () => this.get());
+  }
+
+  put() {
+    this.fixID();
+    this.service.puts(this.constructor.name, this.item[Object.keys(this.item)[0]], this.item)
+      .subscribe(() => null, () => null, () => this.get());
+  }
+
+  delete(id: number) {
+    console.log(id);
+    this.service.deletes(this.constructor.name, id)
+      .subscribe(() => null, () => null, () => this.get());
+  }
+
+  fixID() {
+    this.item[Object.keys(this.item)[0]] = Number.parseInt(this.item[Object.keys(this.item)[0]], 10);
+  }
+
+  display(name: string) {
+    return name.replace('_', ' ');
+  }
+
+  resetModel() {
+    this.item = new this.item.constructor();
+  }
+
+  openModal() {
+    $('#addModal').modal('show');
+  }
 }

@@ -8,7 +8,7 @@ import { BaseComponent } from '../base/base.component';
 })
 export class PeriodosComponent extends BaseComponent {
 
-  item: Periodo;
+  item = new Periodo();
 
   headers = [
     {name: 'Id_Periodo', display: 'ID'},
@@ -17,5 +17,5 @@ export class PeriodosComponent extends BaseComponent {
 }
 
 export class Periodo {
-  Id_Periodo: number;
+  Id_Periodo = 0;
 }

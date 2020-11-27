@@ -20,13 +20,13 @@ namespace TFBancoDados.Controllers
         }
 
         // GET: Periodoes
-        public async Task<IActionResult> Index()
+        public async Task<List<Periodo>> Index()
         {
-            return View(await _context.Periodo.ToListAsync());
+            return await _context.Periodo.ToListAsync();
         }
 
         // GET: Periodoes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<ActionResult<Periodo>> Details(int? id)
         {
             if (id == null)
             {
@@ -40,7 +40,7 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(periodo);
+            return periodo;
         }
 
         // GET: Periodoes/Create
@@ -53,8 +53,7 @@ namespace TFBancoDados.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Periodo")] Periodo periodo)
+        public async Task<ActionResult<Periodo>> Create([FromBody] Periodo periodo)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +61,11 @@ namespace TFBancoDados.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(periodo);
+            return periodo;
         }
 
         // GET: Periodoes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<ActionResult<Periodo>> Edit(int? id)
         {
             if (id == null)
             {
@@ -78,20 +77,15 @@ namespace TFBancoDados.Controllers
             {
                 return NotFound();
             }
-            return View(periodo);
+            return periodo;
         }
 
         // POST: Periodoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Periodo")] Periodo periodo)
+        public async Task<ActionResult<Periodo>> Edit([FromBody] Periodo periodo)
         {
-            if (id != periodo.Id_Periodo)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
@@ -113,11 +107,11 @@ namespace TFBancoDados.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(periodo);
+            return periodo;
         }
 
         // GET: Periodoes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<ActionResult<Periodo>> Delete(int? id)
         {
             if (id == null)
             {
@@ -131,13 +125,12 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(periodo);
+            return periodo;
         }
 
         // POST: Periodoes/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult<Periodo>> DeleteConfirmed([FromBody] int id)
         {
             var periodo = await _context.Periodo.FindAsync(id);
             _context.Periodo.Remove(periodo);

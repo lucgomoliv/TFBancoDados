@@ -3,7 +3,7 @@ import { BaseComponent } from '../base/base.component';
 
 export class Professor {
   Id_Professor = 0;
-  Nome = 'a';
+  Nome = '';
 }
 
 @Component({

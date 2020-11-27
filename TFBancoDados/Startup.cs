@@ -50,6 +50,7 @@ namespace TFBancoDados
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -78,6 +79,7 @@ namespace TFBancoDados
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+            app.UseRouteDebugger();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace TFBancoDados.Controllers
         }
 
         // GET: Professors/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<ActionResult<Professor>> Details(int? id)
         {
             if (id == null)
             {
@@ -40,7 +40,7 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(professor);
+            return professor;
         }
 
         // GET: Professors/Create
@@ -53,8 +53,7 @@ namespace TFBancoDados.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Professor,Nome")] Professor professor)
+        public async Task<ActionResult<Professor>> Create([FromBody] Professor professor)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +61,11 @@ namespace TFBancoDados.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(professor);
+            return professor;
         }
 
         // GET: Professors/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<ActionResult<Professor>> Edit(int? id)
         {
             if (id == null)
             {
@@ -78,21 +77,15 @@ namespace TFBancoDados.Controllers
             {
                 return NotFound();
             }
-            return View(professor);
+            return professor;
         }
 
         // POST: Professors/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Professor,Nome")] Professor professor)
+        public async Task<ActionResult<Professor>> Edit([FromBody] Professor professor)
         {
-            if (id != professor.Id_Professor)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -113,11 +106,11 @@ namespace TFBancoDados.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(professor);
+            return professor;
         }
 
         // GET: Professors/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<ActionResult<Professor>> Delete(int? id)
         {
             if (id == null)
             {
@@ -131,13 +124,12 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(professor);
+            return professor;
         }
 
         // POST: Professors/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult<Professor>> DeleteConfirmed([FromBody] int id)
         {
             var professor = await _context.Professor.FindAsync(id);
             _context.Professor.Remove(professor);

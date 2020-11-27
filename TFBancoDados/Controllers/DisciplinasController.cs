@@ -20,13 +20,13 @@ namespace TFBancoDados.Controllers
         }
 
         // GET: Disciplinas
-        public async Task<IActionResult> Index()
+        public async Task<List<Disciplina>> Index()
         {
-            return View(await _context.Disciplina.ToListAsync());
+            return await _context.Disciplina.ToListAsync();
         }
 
         // GET: Disciplinas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<ActionResult<Disciplina>> Details(int? id)
         {
             if (id == null)
             {
@@ -40,7 +40,7 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(disciplina);
+            return disciplina;
         }
 
         // GET: Disciplinas/Create
@@ -53,8 +53,7 @@ namespace TFBancoDados.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Materia,Nome_Materia")] Disciplina disciplina)
+        public async Task<ActionResult<Disciplina>> Create([FromBody] Disciplina disciplina)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +61,11 @@ namespace TFBancoDados.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(disciplina);
+            return disciplina;
         }
 
         // GET: Disciplinas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<ActionResult<Disciplina>> Edit(int? id)
         {
             if (id == null)
             {
@@ -78,21 +77,15 @@ namespace TFBancoDados.Controllers
             {
                 return NotFound();
             }
-            return View(disciplina);
+            return disciplina;
         }
 
         // POST: Disciplinas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Materia,Nome_Materia")] Disciplina disciplina)
+        public async Task<ActionResult<Disciplina>> Edit([FromBody] Disciplina disciplina)
         {
-            if (id != disciplina.Id_Materia)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -113,11 +106,11 @@ namespace TFBancoDados.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(disciplina);
+            return disciplina;
         }
 
         // GET: Disciplinas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<ActionResult<Disciplina>> Delete(int? id)
         {
             if (id == null)
             {
@@ -131,13 +124,12 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(disciplina);
+            return disciplina;
         }
 
         // POST: Disciplinas/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult<Disciplina>> DeleteConfirmed([FromBody] int id)
         {
             var disciplina = await _context.Disciplina.FindAsync(id);
             _context.Disciplina.Remove(disciplina);

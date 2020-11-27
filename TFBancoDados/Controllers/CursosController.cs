@@ -20,13 +20,13 @@ namespace TFBancoDados.Controllers
         }
 
         // GET: Cursoes
-        public async Task<IActionResult> Index()
+        public async Task<List<Curso>> Index()
         {
-            return View(await _context.Curso.ToListAsync());
+            return await _context.Curso.ToListAsync();
         }
 
         // GET: Cursoes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<ActionResult<Curso>> Details(int? id)
         {
             if (id == null)
             {
@@ -40,7 +40,7 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(curso);
+            return curso;
         }
 
         // GET: Cursoes/Create
@@ -53,8 +53,7 @@ namespace TFBancoDados.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Curso,Nome_Curso")] Curso curso)
+        public async Task<ActionResult<Curso>> Create([FromBody] Curso curso)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +61,11 @@ namespace TFBancoDados.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(curso);
+            return curso;
         }
 
         // GET: Cursoes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<ActionResult<Curso>> Edit(int? id)
         {
             if (id == null)
             {
@@ -78,21 +77,15 @@ namespace TFBancoDados.Controllers
             {
                 return NotFound();
             }
-            return View(curso);
+            return curso;
         }
 
         // POST: Cursoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Curso,Nome_Curso")] Curso curso)
+        public async Task<ActionResult<Curso>> Edit([FromBody] Curso curso)
         {
-            if (id != curso.Id_Curso)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -113,11 +106,11 @@ namespace TFBancoDados.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(curso);
+            return curso;
         }
 
         // GET: Cursoes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<ActionResult<Curso>> Delete(int? id)
         {
             if (id == null)
             {
@@ -131,13 +124,12 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(curso);
+            return curso;
         }
 
         // POST: Cursoes/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed([FromBody] int id)
         {
             var curso = await _context.Curso.FindAsync(id);
             _context.Curso.Remove(curso);

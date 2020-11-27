@@ -20,13 +20,13 @@ namespace TFBancoDados.Controllers
         }
 
         // GET: Turmas
-        public async Task<IActionResult> Index()
+        public async Task<List<Turma>> Index()
         {
-            return View(await _context.Turma.ToListAsync());
+            return await _context.Turma.ToListAsync();
         }
 
         // GET: Turmas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<ActionResult<Turma>> Details(int? id)
         {
             if (id == null)
             {
@@ -40,7 +40,7 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(turma);
+            return turma;
         }
 
         // GET: Turmas/Create
@@ -53,8 +53,7 @@ namespace TFBancoDados.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Turma,Horario_Inicio,Horario_Fim,Dia_Semana")] Turma turma)
+        public async Task<ActionResult<Turma>> Create([FromBody] Turma turma)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +61,11 @@ namespace TFBancoDados.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(turma);
+            return turma;
         }
 
         // GET: Turmas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<ActionResult<Turma>> Edit(int? id)
         {
             if (id == null)
             {
@@ -78,21 +77,15 @@ namespace TFBancoDados.Controllers
             {
                 return NotFound();
             }
-            return View(turma);
+            return turma;
         }
 
         // POST: Turmas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Turma,Horario_Inicio,Horario_Fim,Dia_Semana")] Turma turma)
+        public async Task<ActionResult<Turma>> Edit([FromBody] Turma turma)
         {
-            if (id != turma.Id_Turma)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -113,11 +106,11 @@ namespace TFBancoDados.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(turma);
+            return turma;
         }
 
         // GET: Turmas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<ActionResult<Turma>> Delete(int? id)
         {
             if (id == null)
             {
@@ -131,13 +124,12 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(turma);
+            return turma;
         }
 
         // POST: Turmas/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed([FromBody] int id)
         {
             var turma = await _context.Turma.FindAsync(id);
             _context.Turma.Remove(turma);

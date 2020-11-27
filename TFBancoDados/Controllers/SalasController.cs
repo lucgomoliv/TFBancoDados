@@ -20,13 +20,13 @@ namespace TFBancoDados.Controllers
         }
 
         // GET: Salas
-        public async Task<IActionResult> Index()
+        public async Task<List<Sala>> Index()
         {
-            return View(await _context.Sala.ToListAsync());
+            return await _context.Sala.ToListAsync();
         }
 
         // GET: Salas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<ActionResult<Sala>> Details(int? id)
         {
             if (id == null)
             {
@@ -40,7 +40,7 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(sala);
+            return sala;
         }
 
         // GET: Salas/Create
@@ -53,8 +53,7 @@ namespace TFBancoDados.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Sala")] Sala sala)
+        public async Task<ActionResult<Sala>> Create([FromBody] Sala sala)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +61,11 @@ namespace TFBancoDados.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(sala);
+            return sala;
         }
 
         // GET: Salas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<ActionResult<Sala>> Edit(int? id)
         {
             if (id == null)
             {
@@ -78,21 +77,15 @@ namespace TFBancoDados.Controllers
             {
                 return NotFound();
             }
-            return View(sala);
+            return sala;
         }
 
         // POST: Salas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Sala")] Sala sala)
+        public async Task<ActionResult<Sala>> Edit([FromBody] Sala sala)
         {
-            if (id != sala.Id_Sala)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -113,11 +106,11 @@ namespace TFBancoDados.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(sala);
+            return sala;
         }
 
         // GET: Salas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<ActionResult<Sala>> Delete(int? id)
         {
             if (id == null)
             {
@@ -131,13 +124,12 @@ namespace TFBancoDados.Controllers
                 return NotFound();
             }
 
-            return View(sala);
+            return sala;
         }
 
         // POST: Salas/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed([FromBody] int id)
         {
             var sala = await _context.Sala.FindAsync(id);
             _context.Sala.Remove(sala);

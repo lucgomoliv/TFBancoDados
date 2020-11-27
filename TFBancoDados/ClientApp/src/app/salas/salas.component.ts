@@ -8,7 +8,7 @@ import { BaseComponent } from '../base/base.component';
 })
 export class SalasComponent extends BaseComponent {
 
-  item: Sala;
+  item = new Sala();
 
   headers = [
     {name: 'Id_Sala', display: 'ID'},
@@ -16,5 +16,5 @@ export class SalasComponent extends BaseComponent {
 }
 
 export class Sala {
-  Id_Sala: number;
+  Id_Sala = 0;
 }

@@ -17,6 +17,6 @@ export class CursosComponent extends BaseComponent {
 }
 
 export class Curso {
-  Id_Curso: number;
-  Nome_Curso: string;
+  Id_Curso = 0;
+  Nome_Curso = '';
 }
