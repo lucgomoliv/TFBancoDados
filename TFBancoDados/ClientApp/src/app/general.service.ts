@@ -17,6 +17,10 @@ export class GeneralService {
       case 'Periodos': return this.getPeriodos();
       case 'Disciplinas': return this.getDisciplinas();
       case 'Cursos': return this.getCursos();
+      case 'possui': return this.getPossui();
+      case 'pertence': return this.getPertence();
+      case 'lecionar': return this.getLecionar();
+      case 'ofertar_Turma_Disciplina_Sala': return this.getOfertar();
     }
   }
 
@@ -124,5 +128,17 @@ export class GeneralService {
   }
   deleteTurma(id: number) {
     return this.http.post('turmas/delete', id);
+  }
+  getPossui() {
+    return this.http.get('possui');
+  }
+  getOfertar() {
+    return this.http.get('ofertar');
+  }
+  getLecionar() {
+    return this.http.get('lecionar');
+  }
+  getPertence() {
+    return this.http.get('pertence');
   }
 }

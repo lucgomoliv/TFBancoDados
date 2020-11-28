@@ -10,7 +10,9 @@ namespace TFBancoDados.Models
     {
         public int fk_Periodo_Id_Periodo { get; set; }
         public int fk_Turma_Id_Turma { get; set; }
+        [JsonIgnore]
         public Turma turma { get; set; }
+        [JsonIgnore]
         public Periodo periodo { get; set; }
     }
 }

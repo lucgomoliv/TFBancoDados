@@ -21,13 +21,13 @@ namespace TFBancoDados.Controllers
         // GET: PossuiController
         public async Task<List<Ofertar_Turma_Disciplina_Sala>> Index()
         {
-            return await _context.Ofertar.ToListAsync();
+            return await _context.Ofertar_Turma_Disciplina_Sala.ToListAsync();
         }
 
         // GET: PossuiController/Details/5
         public async Task<ActionResult<Ofertar_Turma_Disciplina_Sala>> Details(int id1, int id2, int id3)
         {
-            var ofertar = await _context.Ofertar
+            var ofertar = await _context.Ofertar_Turma_Disciplina_Sala
                 .FirstOrDefaultAsync(m => m.fk_Turma_Id_Turma == id1 && m.fk_Disciplina_Id_Materia == id2 && m.fk_Sala_Id_Sala == id3);
             if (ofertar == null)
             {
@@ -49,7 +49,7 @@ namespace TFBancoDados.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Ofertar.Add(ofertar);
+                _context.Ofertar_Turma_Disciplina_Sala.Add(ofertar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -92,8 +92,8 @@ namespace TFBancoDados.Controllers
         [HttpPost]
         public async Task<ActionResult<Ofertar_Turma_Disciplina_Sala>> Delete([FromBody] int id1)
         {
-            var ofertar = await _context.Ofertar.FindAsync(id1);
-            _context.Ofertar.Remove(ofertar);
+            var ofertar = await _context.Ofertar_Turma_Disciplina_Sala.FindAsync(id1);
+            _context.Ofertar_Turma_Disciplina_Sala.Remove(ofertar);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

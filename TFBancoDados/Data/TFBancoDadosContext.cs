@@ -49,6 +49,6 @@ namespace TFBancoDados.Data
         public DbSet<Possui> Possui { get; set; }
         public DbSet<Pertence> Pertence { get; set; }
         public DbSet<Lecionar> Lecionar { get; set; }
-        public DbSet<Ofertar_Turma_Disciplina_Sala> Ofertar { get; set; }
+        public DbSet<Ofertar_Turma_Disciplina_Sala> Ofertar_Turma_Disciplina_Sala { get; set; }
     }
 }

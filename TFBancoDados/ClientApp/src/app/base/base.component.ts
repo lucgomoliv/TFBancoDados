@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../general.service';
 import * as $ from 'jquery';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-base',
@@ -20,6 +21,7 @@ export class BaseComponent implements OnInit {
   items = [];
   itemsInteraction = {};
   interaction = [[], []];
+  interactions = {};
   interactionIds = {};
   options = {};
   option = {};
@@ -35,11 +37,14 @@ export class BaseComponent implements OnInit {
       this.service.gets(v).subscribe(data => this.options[v] = data);
       this.interactionIds[v] = [];
       this.option[v] = 0;
+      this.headers.push({name: v, display: v});
     });
     this.get();
   }
 
-  addInteraction(inter: string, id1: number, id2: number) {
+  popularInteraction() {}
+
+  addInteraction(inter: string, id1: number, id2: number, id3?: number) {
     const obj = {};
     obj[this.fks[0]] = id1;
     obj[this.fks[1]] = id2;
@@ -56,34 +61,35 @@ export class BaseComponent implements OnInit {
   }
 
   get() {
-    this.service.gets(this.constructor.name.replace('Component', ''))
-      .subscribe(data => {this.items = this.normalize(data); console.log(this.items); });
+    if (this.interaction[1].length) {
+      this.interaction[1].forEach(element => {
+        this.service.gets(element).subscribe(value => this.interactions[element] = value, () => null,
+        () => this.service.gets(this.normalizeName())
+          .subscribe(data => this.items = this.normalize(data), () => null, () => this.popularInteraction()));
+      });
+    } else {
+      this.service.gets(this.normalizeName())
+          .subscribe(data => this.items = this.normalize(data), () => null, () => this.popularInteraction());
+    }
+
   }
 
   post() {
-    Object.keys(this.interactionIds).forEach((element, index) => {
-      this.interactionIds[element].forEach(element2 => {
-        this.addInteraction(this.interaction[1][index], element2, Number.parseInt(this.item[Object.keys(this.item)[0]], 10));
-      });
-    });
-    this.interaction[1].forEach(v => {
-      this.item[v] = this.itemsInteraction[v];
-    });
-    console.log(this.item);
     this.fixID();
     this.editar ? this.put() :
-    this.service.posts(this.constructor.name.replace('Component', ''), this.item)
-      .subscribe(() => null, () => null, () => this.get());
+      this.update(this.service.posts(this.normalizeName(), this.item));
   }
 
   put() {
-    this.service.puts(this.constructor.name.replace('Component', ''), this.item[Object.keys(this.item)[0]], this.item)
-      .subscribe(() => null, () => null, () => this.get());
+    this.update(this.service.puts(this.normalizeName(), this.item[Object.keys(this.item)[0]], this.item));
   }
 
   delete(id: number) {
-    this.service.deletes(this.constructor.name.replace('Component', ''), id)
-      .subscribe(() => null, () => null, () => this.get());
+    this.update(this.service.deletes(this.normalizeName(), id));
+  }
+
+  update(observable: Observable<any>) {
+    observable.subscribe(() => null, () => null, () => this.get());
   }
 
   fixID() {
@@ -123,5 +129,9 @@ export class BaseComponent implements OnInit {
       Object.keys(element).forEach((key) => (element[key] == null) && delete element[key]);
     });
     return objs;
+  }
+
+  normalizeName() {
+    return this.constructor.name.replace('Component', '');
   }
 }
