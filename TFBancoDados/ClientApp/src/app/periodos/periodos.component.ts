@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 
+export class Periodo {
+  Id_Periodo = 0;
+}
+
 @Component({
   selector: 'app-periodos',
   templateUrl: '../base/base.component.html',
@@ -14,8 +18,4 @@ export class PeriodosComponent extends BaseComponent {
     {name: 'Id_Periodo', display: 'ID'},
   ];
 
-}
-
-export class Periodo {
-  Id_Periodo = 0;
 }

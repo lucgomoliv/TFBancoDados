@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 
+export class Disciplina {
+  Id_Materia = 0;
+  Nome_Materia = '';
+}
+
 @Component({
   selector: 'app-disciplinas',
   templateUrl: '../base/base.component.html',
@@ -15,9 +20,4 @@ export class DisciplinasComponent extends BaseComponent {
     {name: 'Nome_Materia', display: 'Nome'},
   ];
 
-}
-
-export class Disciplina {
-  Id_Materia = 0;
-  Nome_Materia = '';
 }

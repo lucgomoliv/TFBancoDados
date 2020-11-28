@@ -11,45 +11,45 @@ export class GeneralService {
 
   gets(component: string) {
     switch (component) {
-      case 'ProfessoresComponent': return this.getProfessores();
-      case 'TurmasComponent': return this.getTurmas();
-      case 'SalasComponent': return this.getSalas();
-      case 'PeriodosComponent': return this.getPeriodos();
-      case 'DisciplinasComponent': return this.getDisciplinas();
-      case 'CursosComponent': return this.getCursos();
+      case 'Professores': return this.getProfessores();
+      case 'Turmas': return this.getTurmas();
+      case 'Salas': return this.getSalas();
+      case 'Periodos': return this.getPeriodos();
+      case 'Disciplinas': return this.getDisciplinas();
+      case 'Cursos': return this.getCursos();
     }
   }
 
   posts(component: string, object: any) {
     switch (component) {
-      case 'ProfessoresComponent': return this.postProfessor(object);
-      case 'TurmasComponent': return this.postTurma(object);
-      case 'SalasComponent': return this.postSala(object);
-      case 'PeriodosComponent': return this.postPeriodo(object);
-      case 'DisciplinasComponent': return this.postDisciplina(object);
-      case 'CursosComponent': return this.postCurso(object);
+      case 'Professores': return this.postProfessor(object);
+      case 'Turmas': return this.postTurma(object);
+      case 'Salas': return this.postSala(object);
+      case 'Periodos': return this.postPeriodo(object);
+      case 'Disciplinas': return this.postDisciplina(object);
+      case 'Cursos': return this.postCurso(object);
     }
   }
 
   puts(component: string, id: number, object: any) {
     switch (component) {
-      case 'ProfessoresComponent': return this.putProfessor(object);
-      case 'TurmasComponent': return this.putTurma(object);
-      case 'SalasComponent': return this.putSala(object);
-      case 'PeriodosComponent': return this.putPeriodo(object);
-      case 'DisciplinasComponent': return this.putDisciplina(object);
-      case 'CursosComponent': return this.putCurso(object);
+      case 'Professores': return this.putProfessor(object);
+      case 'Turmas': return this.putTurma(object);
+      case 'Salas': return this.putSala(object);
+      case 'Periodos': return this.putPeriodo(object);
+      case 'Disciplinas': return this.putDisciplina(object);
+      case 'Cursos': return this.putCurso(object);
     }
   }
 
   deletes(component: string, id: number) {
     switch (component) {
-      case 'ProfessoresComponent': return this.deleteProfessor(id);
-      case 'TurmasComponent': return this.deleteTurma(id);
-      case 'SalasComponent': return this.deleteSala(id);
-      case 'PeriodosComponent': return this.deletePeriodo(id);
-      case 'DisciplinasComponent': return this.deleteDisciplina(id);
-      case 'CursosComponent': return this.deleteCurso(id);
+      case 'Professores': return this.deleteProfessor(id);
+      case 'Turmas': return this.deleteTurma(id);
+      case 'Salas': return this.deleteSala(id);
+      case 'Periodos': return this.deletePeriodo(id);
+      case 'Disciplinas': return this.deleteDisciplina(id);
+      case 'Cursos': return this.deleteCurso(id);
     }
   }
 

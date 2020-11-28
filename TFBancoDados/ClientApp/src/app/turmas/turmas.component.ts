@@ -17,6 +17,8 @@ export class TurmasComponent extends BaseComponent {
 
   item = new Turma();
 
+  interaction = [['Professores', 'Periodos', 'Disciplinas', 'Salas'], ['lecionar', 'pertence', 'ofertar_Turma_Disciplina_Sala']];
+
   headers = [
     {name: 'Id_Turma', display: 'ID'},
     {name: 'Horario_Inicio', display: 'Horário de Início'},

@@ -17,7 +17,7 @@ export class CursosComponent extends BaseComponent {
 
   fks = ['fk_Periodo_Id_Periodo', 'fk_Curso_Id_Curso'];
 
-  interaction = ['Periodo'];
+  interaction = [['Periodos'], ['possui']];
 
   headers = [
     {name: 'Id_Curso', display: 'ID'},
