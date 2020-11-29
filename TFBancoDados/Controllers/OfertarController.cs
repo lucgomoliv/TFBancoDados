@@ -18,13 +18,11 @@ namespace TFBancoDados.Controllers
         {
             _context = context;
         }
-        // GET: PossuiController
         public async Task<List<Ofertar_Turma_Disciplina_Sala>> Index()
         {
             return await _context.Ofertar_Turma_Disciplina_Sala.ToListAsync();
         }
 
-        // GET: PossuiController/Details/5
         public async Task<ActionResult<Ofertar_Turma_Disciplina_Sala>> Details(int id1, int id2, int id3)
         {
             var ofertar = await _context.Ofertar_Turma_Disciplina_Sala
@@ -37,13 +35,11 @@ namespace TFBancoDados.Controllers
             return ofertar;
         }
 
-        // GET: PossuiController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PossuiController/Create
         [HttpPost]
         public async Task<ActionResult<Ofertar_Turma_Disciplina_Sala>> Create([FromBody] Ofertar_Turma_Disciplina_Sala ofertar)
         {
@@ -56,13 +52,11 @@ namespace TFBancoDados.Controllers
             return ofertar;
         }
 
-        // GET: PossuiController/Edit/5
         public ActionResult Edit(int id1)
         {
             return View();
         }
 
-        // POST: PossuiController/Edit/5
         [HttpPost]
         public async Task<ActionResult<Ofertar_Turma_Disciplina_Sala>> Edit([FromBody] Ofertar_Turma_Disciplina_Sala ofertar)
         {
@@ -82,13 +76,11 @@ namespace TFBancoDados.Controllers
             return ofertar;
         }
 
-        // GET: PossuiController/Delete/5
         public ActionResult Delete(int? id)
         {
             return View();
         }
 
-        // POST: PossuiController/Delete/5
         [HttpPost]
         public async Task<ActionResult<Ofertar_Turma_Disciplina_Sala>> Delete([FromBody] int id1)
         {

@@ -19,13 +19,11 @@ namespace TFBancoDados.Controllers
             _context = context;
         }
 
-        // GET: Turmas
         public async Task<List<Turma>> Index()
         {
             return await _context.Turma.ToListAsync();
         }
 
-        // GET: Turmas/Details/5
         public async Task<ActionResult<Turma>> Details(int? id)
         {
             if (id == null)
@@ -43,15 +41,11 @@ namespace TFBancoDados.Controllers
             return turma;
         }
 
-        // GET: Turmas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Turmas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Turma>> Create([FromBody] Turma turma)
         {
@@ -64,7 +58,6 @@ namespace TFBancoDados.Controllers
             return turma;
         }
 
-        // GET: Turmas/Edit/5
         public async Task<ActionResult<Turma>> Edit(int? id)
         {
             if (id == null)
@@ -80,9 +73,6 @@ namespace TFBancoDados.Controllers
             return turma;
         }
 
-        // POST: Turmas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Turma>> Edit([FromBody] Turma turma)
         {
@@ -90,6 +80,15 @@ namespace TFBancoDados.Controllers
             {
                 try
                 {
+                    await _context.Pertence.FromSqlRaw($"select * from pertence where fk_Turma_Id_Turma = {turma.Id_Turma}")
+                        .ForEachAsync(v => _context.Pertence.Remove(v));
+                    await _context.Lecionar.FromSqlRaw($"select * from lecionar where fk_Turma_Id_Turma = {turma.Id_Turma}")
+                        .ForEachAsync(v => _context.Remove(v));
+                    await _context.Ofertar_Turma_Disciplina_Sala.FromSqlRaw($"select * from ofertar_turma_disciplina_sala where fk_Turma_Id_Turma = {turma.Id_Turma}")
+                        .ForEachAsync(v => _context.Remove(v));
+                    _context.Add(turma.lecionar.FirstOrDefault());
+                    _context.Add(turma.ofertar_Turma_Disciplina_Sala.FirstOrDefault());
+                    _context.Add(turma.pertence.FirstOrDefault());
                     _context.Update(turma);
                     await _context.SaveChangesAsync();
                 }
@@ -109,7 +108,6 @@ namespace TFBancoDados.Controllers
             return turma;
         }
 
-        // GET: Turmas/Delete/5
         public async Task<ActionResult<Turma>> Delete(int? id)
         {
             if (id == null)
@@ -127,7 +125,6 @@ namespace TFBancoDados.Controllers
             return turma;
         }
 
-        // POST: Turmas/Delete/5
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed([FromBody] int id)
         {

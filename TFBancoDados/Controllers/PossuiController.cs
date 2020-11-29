@@ -18,13 +18,11 @@ namespace TFBancoDados.Controllers
         {
             _context = context;
         }
-        // GET: PossuiController
         public async Task<List<Possui>> Index()
         {
             return await _context.Possui.ToListAsync();
         }
 
-        // GET: PossuiController/Details/5
         public async Task<ActionResult<Possui>> Details(int id1, int id2)
         {
             var possui = await _context.Possui
@@ -37,13 +35,11 @@ namespace TFBancoDados.Controllers
             return possui;
         }
 
-        // GET: PossuiController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PossuiController/Create
         [HttpPost]
         public async Task<ActionResult<Possui>> Create([FromBody] Possui possui)
         {
@@ -56,13 +52,11 @@ namespace TFBancoDados.Controllers
             return possui;
         }
 
-        // GET: PossuiController/Edit/5
         public ActionResult Edit(int id1)
         {
             return View();
         }
 
-        // POST: PossuiController/Edit/5
         [HttpPost]
         public async Task<ActionResult<Possui>> Edit([FromBody] Possui possui)
         {
@@ -82,13 +76,11 @@ namespace TFBancoDados.Controllers
             return possui;
         }
 
-        // GET: PossuiController/Delete/5
         public ActionResult Delete(int? id)
         {
             return View();
         }
 
-        // POST: PossuiController/Delete/5
         [HttpPost]
         public async Task<ActionResult<Possui>> Delete([FromBody] int id1)
         {

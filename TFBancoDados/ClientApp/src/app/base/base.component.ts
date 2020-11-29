@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class BaseComponent implements OnInit {
 
-  constructor(private service: GeneralService) {}
+  constructor(protected service: GeneralService) {}
 
   name = this.constructor.name.replace('Component', '');
 
@@ -27,6 +27,7 @@ export class BaseComponent implements OnInit {
   option = {};
   fks: string[] = [];
   editar = false;
+  varios = false;
 
   headers = [
     {name: '', display: ''}
@@ -75,7 +76,6 @@ export class BaseComponent implements OnInit {
       this.service.gets(this.normalizeName())
           .subscribe(data => this.items = this.normalize(data), () => null, () => this.popularInteraction());
     }
-
   }
 
   post() {

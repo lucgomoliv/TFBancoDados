@@ -19,13 +19,11 @@ namespace TFBancoDados.Controllers
             _context = context;
         }
 
-        // GET: Salas
         public async Task<List<Sala>> Index()
         {
             return await _context.Sala.ToListAsync();
         }
 
-        // GET: Salas/Details/5
         public async Task<ActionResult<Sala>> Details(int? id)
         {
             if (id == null)
@@ -43,15 +41,11 @@ namespace TFBancoDados.Controllers
             return sala;
         }
 
-        // GET: Salas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Salas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Sala>> Create([FromBody] Sala sala)
         {
@@ -64,7 +58,6 @@ namespace TFBancoDados.Controllers
             return sala;
         }
 
-        // GET: Salas/Edit/5
         public async Task<ActionResult<Sala>> Edit(int? id)
         {
             if (id == null)
@@ -80,9 +73,6 @@ namespace TFBancoDados.Controllers
             return sala;
         }
 
-        // POST: Salas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Sala>> Edit([FromBody] Sala sala)
         {
@@ -109,7 +99,6 @@ namespace TFBancoDados.Controllers
             return sala;
         }
 
-        // GET: Salas/Delete/5
         public async Task<ActionResult<Sala>> Delete(int? id)
         {
             if (id == null)
@@ -127,7 +116,6 @@ namespace TFBancoDados.Controllers
             return sala;
         }
 
-        // POST: Salas/Delete/5
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed([FromBody] int id)
         {

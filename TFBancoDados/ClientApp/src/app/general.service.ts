@@ -46,14 +46,14 @@ export class GeneralService {
     }
   }
 
-  deletes(component: string, id: number) {
+  deletes(component: string, id1: number) {
     switch (component) {
-      case 'Professores': return this.deleteProfessor(id);
-      case 'Turmas': return this.deleteTurma(id);
-      case 'Salas': return this.deleteSala(id);
-      case 'Periodos': return this.deletePeriodo(id);
-      case 'Disciplinas': return this.deleteDisciplina(id);
-      case 'Cursos': return this.deleteCurso(id);
+      case 'Professores': return this.deleteProfessor(id1);
+      case 'Turmas': return this.deleteTurma(id1);
+      case 'Salas': return this.deleteSala(id1);
+      case 'Periodos': return this.deletePeriodo(id1);
+      case 'Disciplinas': return this.deleteDisciplina(id1);
+      case 'Cursos': return this.deleteCurso(id1);
     }
   }
 

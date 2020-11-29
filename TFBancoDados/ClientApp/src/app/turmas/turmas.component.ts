@@ -34,44 +34,41 @@ export class TurmasComponent extends BaseComponent {
       let aux = '';
       this.interactions['lecionar'].filter((v) => v['fk_Turma_Id_Turma'] === element['Id_Turma'])
         .forEach(element2 => {
-          aux += element2['fk_Professor_Id_Professor'] + '; ';
+          aux += element2['fk_Professor_Id_Professor'];
         });
       element['Professores'] = aux;
       aux = '';
       this.interactions['pertence'].filter((v) => v['fk_Turma_Id_Turma'] === element['Id_Turma'])
         .forEach(element2 => {
-          aux += element2['fk_Periodo_Id_Periodo'] + '; ';
+          aux += element2['fk_Periodo_Id_Periodo'];
         });
       element['Periodos'] = aux;
       aux = '';
       this.interactions['ofertar_Turma_Disciplina_Sala'].filter((v) => v['fk_Turma_Id_Turma'] === element['Id_Turma'])
         .forEach(element2 => {
-          aux += element2['fk_Disciplina_Id_Materia'] + '; ';
+          aux += element2['fk_Disciplina_Id_Materia'];
         });
       element['Disciplinas'] = aux;
       aux = '';
       this.interactions['ofertar_Turma_Disciplina_Sala'].filter((v) => v['fk_Turma_Id_Turma'] === element['Id_Turma'])
         .forEach(element2 => {
-          aux += element2['fk_Sala_Id_Sala'] + '; ';
+          aux += element2['fk_Sala_Id_Sala'];
         });
       element['Salas'] = aux;
     });
   }
 
   post() {
-    Object.keys(this.interactionIds).forEach((element, index) => {
-      this.interactionIds[element].forEach(element2 => {
-        if (element !== 'Disciplinas' && element !== 'Salas') {
-          this.addInteraction(this.interaction[1][index], element2,
-            this.item['Id_Turma'] || Number.parseInt(this.item[Object.keys(this.item)[0]] + 1 || 1, 10));
-        }
-      });
-    });
+    this.addInteraction('pertence',
+                        Number.parseInt(this.option['Periodos'], 10),
+                        this.item['Id_Turma'] || 1);
+    this.addInteraction('lecionar',
+                        Number.parseInt(this.option['Professores'], 10),
+                        this.item['Id_Turma'] || 1);
     this.addInteraction('ofertar_Turma_Disciplina_Sala',
-                        this.item['Id_Turma'] ||
-                        Number.parseInt(this.item[Object.keys(this.item)[0]] + 1 || 1, 10),
-                        this.interactionIds['Disciplinas'][0],
-                        this.interactionIds['Salas'][0]);
+                        this.item['Id_Turma'] || 1,
+                        Number.parseInt(this.option['Disciplinas'], 10),
+                        Number.parseInt(this.option['Salas'], 10));
     super.post();
   }
 
@@ -90,5 +87,13 @@ export class TurmasComponent extends BaseComponent {
     }
     if (!this.itemsInteraction[inter]) { this.itemsInteraction[inter] = []; }
     this.itemsInteraction[inter].push(obj);
+  }
+
+  openModal() {
+    this.interaction[0].forEach(element => {
+      $('#' + element).val(this.item[element]);
+      this.option[element] = this.item[element];
+    });
+    super.openModal();
   }
 }

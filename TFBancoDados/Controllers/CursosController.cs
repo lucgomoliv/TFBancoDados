@@ -19,13 +19,11 @@ namespace TFBancoDados.Controllers
             _context = context;
         }
 
-        // GET: Cursoes
         public async Task<List<Curso>> Index()
         {
             return await _context.Curso.ToListAsync();
         }
 
-        // GET: Cursoes/Details/5
         public async Task<ActionResult<Curso>> Details(int? id)
         {
             if (id == null)
@@ -43,15 +41,11 @@ namespace TFBancoDados.Controllers
             return curso;
         }
 
-        // GET: Cursoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Cursoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Curso>> Create([FromBody] Curso curso)
         {
@@ -64,7 +58,6 @@ namespace TFBancoDados.Controllers
             return curso;
         }
 
-        // GET: Cursoes/Edit/5
         public async Task<ActionResult<Curso>> Edit(int? id)
         {
             if (id == null)
@@ -80,9 +73,6 @@ namespace TFBancoDados.Controllers
             return curso;
         }
 
-        // POST: Cursoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Curso>> Edit([FromBody] Curso curso)
         {
@@ -109,7 +99,6 @@ namespace TFBancoDados.Controllers
             return curso;
         }
 
-        // GET: Cursoes/Delete/5
         public async Task<ActionResult<Curso>> Delete(int? id)
         {
             if (id == null)
@@ -127,7 +116,6 @@ namespace TFBancoDados.Controllers
             return curso;
         }
 
-        // POST: Cursoes/Delete/5
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed([FromBody] int id)
         {

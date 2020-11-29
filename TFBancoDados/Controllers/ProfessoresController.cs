@@ -19,13 +19,11 @@ namespace TFBancoDados.Controllers
             _context = context;
         }
 
-        // GET: Professors
         public async Task<List<Professor>> Index()
         {
             return await _context.Professor.ToListAsync();
         }
 
-        // GET: Professors/Details/5
         public async Task<ActionResult<Professor>> Details(int? id)
         {
             if (id == null)
@@ -43,15 +41,11 @@ namespace TFBancoDados.Controllers
             return professor;
         }
 
-        // GET: Professors/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Professors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Professor>> Create([FromBody] Professor professor)
         {
@@ -64,7 +58,6 @@ namespace TFBancoDados.Controllers
             return professor;
         }
 
-        // GET: Professors/Edit/5
         public async Task<ActionResult<Professor>> Edit(int? id)
         {
             if (id == null)
@@ -80,9 +73,6 @@ namespace TFBancoDados.Controllers
             return professor;
         }
 
-        // POST: Professors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Professor>> Edit([FromBody] Professor professor)
         {
@@ -109,7 +99,6 @@ namespace TFBancoDados.Controllers
             return professor;
         }
 
-        // GET: Professors/Delete/5
         public async Task<ActionResult<Professor>> Delete(int? id)
         {
             if (id == null)
@@ -127,7 +116,6 @@ namespace TFBancoDados.Controllers
             return professor;
         }
 
-        // POST: Professors/Delete/5
         [HttpPost, ActionName("Delete")]
         public async Task<ActionResult<Professor>> DeleteConfirmed([FromBody] int id)
         {

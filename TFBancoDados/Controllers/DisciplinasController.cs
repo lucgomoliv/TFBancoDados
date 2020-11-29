@@ -19,13 +19,11 @@ namespace TFBancoDados.Controllers
             _context = context;
         }
 
-        // GET: Disciplinas
         public async Task<List<Disciplina>> Index()
         {
             return await _context.Disciplina.ToListAsync();
         }
 
-        // GET: Disciplinas/Details/5
         public async Task<ActionResult<Disciplina>> Details(int? id)
         {
             if (id == null)
@@ -43,15 +41,11 @@ namespace TFBancoDados.Controllers
             return disciplina;
         }
 
-        // GET: Disciplinas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Disciplinas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Disciplina>> Create([FromBody] Disciplina disciplina)
         {
@@ -64,7 +58,6 @@ namespace TFBancoDados.Controllers
             return disciplina;
         }
 
-        // GET: Disciplinas/Edit/5
         public async Task<ActionResult<Disciplina>> Edit(int? id)
         {
             if (id == null)
@@ -80,9 +73,6 @@ namespace TFBancoDados.Controllers
             return disciplina;
         }
 
-        // POST: Disciplinas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Disciplina>> Edit([FromBody] Disciplina disciplina)
         {
@@ -109,7 +99,6 @@ namespace TFBancoDados.Controllers
             return disciplina;
         }
 
-        // GET: Disciplinas/Delete/5
         public async Task<ActionResult<Disciplina>> Delete(int? id)
         {
             if (id == null)
@@ -127,7 +116,6 @@ namespace TFBancoDados.Controllers
             return disciplina;
         }
 
-        // POST: Disciplinas/Delete/5
         [HttpPost, ActionName("Delete")]
         public async Task<ActionResult<Disciplina>> DeleteConfirmed([FromBody] int id)
         {

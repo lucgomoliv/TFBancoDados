@@ -19,13 +19,11 @@ namespace TFBancoDados.Controllers
             _context = context;
         }
 
-        // GET: Periodoes
         public async Task<List<Periodo>> Index()
         {
             return await _context.Periodo.ToListAsync();
         }
 
-        // GET: Periodoes/Details/5
         public async Task<ActionResult<Periodo>> Details(int? id)
         {
             if (id == null)
@@ -43,15 +41,11 @@ namespace TFBancoDados.Controllers
             return periodo;
         }
 
-        // GET: Periodoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Periodoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Periodo>> Create([FromBody] Periodo periodo)
         {
@@ -64,7 +58,6 @@ namespace TFBancoDados.Controllers
             return periodo;
         }
 
-        // GET: Periodoes/Edit/5
         public async Task<ActionResult<Periodo>> Edit(int? id)
         {
             if (id == null)
@@ -80,9 +73,6 @@ namespace TFBancoDados.Controllers
             return periodo;
         }
 
-        // POST: Periodoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<ActionResult<Periodo>> Edit([FromBody] Periodo periodo)
         {
@@ -110,7 +100,6 @@ namespace TFBancoDados.Controllers
             return periodo;
         }
 
-        // GET: Periodoes/Delete/5
         public async Task<ActionResult<Periodo>> Delete(int? id)
         {
             if (id == null)
@@ -128,7 +117,6 @@ namespace TFBancoDados.Controllers
             return periodo;
         }
 
-        // POST: Periodoes/Delete/5
         [HttpPost, ActionName("Delete")]
         public async Task<ActionResult<Periodo>> DeleteConfirmed([FromBody] int id)
         {

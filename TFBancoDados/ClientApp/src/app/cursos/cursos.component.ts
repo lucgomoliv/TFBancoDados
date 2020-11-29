@@ -15,6 +15,8 @@ export class CursosComponent extends BaseComponent {
 
   item = new Curso();
 
+  varios = true;
+
   fks = ['fk_Periodo_Id_Periodo', 'fk_Curso_Id_Curso'];
 
   interaction = [['Periodos'], ['possui']];
