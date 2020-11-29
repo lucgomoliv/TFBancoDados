@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 
 export class Disciplina {
-  Id_Materia = 0;
   Nome_Materia = '';
 }
 

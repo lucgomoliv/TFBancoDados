@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 
 export class Turma {
-  Id_Turma = 0;
   Horario_Inicio = '';
   Horario_Fim = '';
   Dia_Semana = '';
@@ -63,18 +62,16 @@ export class TurmasComponent extends BaseComponent {
     Object.keys(this.interactionIds).forEach((element, index) => {
       this.interactionIds[element].forEach(element2 => {
         if (element !== 'Disciplinas' && element !== 'Salas') {
-          this.addInteraction(this.interaction[1][index], element2, Number.parseInt(this.item[Object.keys(this.item)[0]], 10));
+          this.addInteraction(this.interaction[1][index], element2,
+            this.item['Id_Turma'] || Number.parseInt(this.item[Object.keys(this.item)[0]] + 1 || 1, 10));
         }
       });
     });
     this.addInteraction('ofertar_Turma_Disciplina_Sala',
-                        Number.parseInt(this.item[Object.keys(this.item)[0]], 10),
+                        this.item['Id_Turma'] ||
+                        Number.parseInt(this.item[Object.keys(this.item)[0]] + 1 || 1, 10),
                         this.interactionIds['Disciplinas'][0],
                         this.interactionIds['Salas'][0]);
-    this.interaction[1].forEach(v => {
-      this.item[v] = this.itemsInteraction[v];
-    });
-    console.log(this.item);
     super.post();
   }
 

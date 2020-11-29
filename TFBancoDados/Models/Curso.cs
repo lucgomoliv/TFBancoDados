@@ -11,6 +11,7 @@ namespace TFBancoDados.Models
     public class Curso
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id_Curso { get; set; }
         [Required]
         [Column(TypeName = "varchar(50)")]

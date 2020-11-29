@@ -11,6 +11,7 @@ namespace TFBancoDados.Models
     public class Disciplina
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id_Materia { get; set; }
         [Required]
         [Column(TypeName = "varchar(30)")]

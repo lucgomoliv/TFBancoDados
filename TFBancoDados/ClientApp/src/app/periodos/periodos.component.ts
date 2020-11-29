@@ -18,4 +18,9 @@ export class PeriodosComponent extends BaseComponent {
     {name: 'Id_Periodo', display: 'ID'},
   ];
 
+  post() {
+    this.fixID();
+    super.post();
+  }
+
 }

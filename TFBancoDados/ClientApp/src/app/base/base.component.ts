@@ -60,6 +60,10 @@ export class BaseComponent implements OnInit {
     console.log(object);
   }
 
+  containsID(key: string) {
+    return key.startsWith('Id', 0);
+  }
+
   get() {
     if (this.interaction[1].length) {
       this.interaction[1].forEach(element => {
@@ -75,7 +79,9 @@ export class BaseComponent implements OnInit {
   }
 
   post() {
-    this.fixID();
+    this.interaction[1].forEach(v => {
+      this.item[v] = this.itemsInteraction[v];
+    });
     this.editar ? this.put() :
       this.update(this.service.posts(this.normalizeName(), this.item));
   }
@@ -101,6 +107,8 @@ export class BaseComponent implements OnInit {
   }
 
   resetModel() {
+    this.itemsInteraction = {};
+    Object.keys(this.option).forEach(v => this.option[v] = null);
     this.interactionIds = {};
     this.interaction[0].forEach(v => {
       this.interactionIds[v] = [];
@@ -114,7 +122,14 @@ export class BaseComponent implements OnInit {
     return Object.assign(new this.item.constructor(), object);
   }
 
+  existInInteraction(inter: string) {
+    return this.interaction[0].some(v => v === inter);
+  }
+
   openModal() {
+    this.interaction[0].forEach(v => {
+      this.interactionIds[v] = this.item[v].slice(0, -2).split('; ').map(x => +x);
+    });
     this.editar = true;
     $('#btnAddModal').click();
   }

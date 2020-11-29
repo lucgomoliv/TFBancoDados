@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 
 export class Curso {
-  Id_Curso = 0;
   Nome_Curso = '';
   Periodos: string;
 }
@@ -39,13 +38,15 @@ export class CursosComponent extends BaseComponent {
   post() {
     Object.keys(this.interactionIds).forEach((element, index) => {
       this.interactionIds[element].forEach(element2 => {
-        this.addInteraction(this.interaction[1][index], element2, Number.parseInt(this.item[Object.keys(this.item)[0]], 10));
+        this.addInteraction(this.interaction[1][index], element2,
+          this.item['Id_Curso'] || Number.parseInt(this.item[Object.keys(this.items)[0]] + 1 || 1, 10));
       });
     });
-    this.interaction[1].forEach(v => {
-      this.item[v] = this.itemsInteraction[v];
-    });
     super.post();
+  }
+
+  openModal() {
+    super.openModal();
   }
 
 }

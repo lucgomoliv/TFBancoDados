@@ -19,5 +19,10 @@ export class SalasComponent extends BaseComponent {
   headers = [
     {name: 'Id_Sala', display: 'ID'},
   ];
+
+  post() {
+    this.fixID();
+    super.post();
+  }
 }
 
