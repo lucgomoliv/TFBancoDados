@@ -149,4 +149,8 @@ export class BaseComponent implements OnInit {
   normalizeName() {
     return this.constructor.name.replace('Component', '');
   }
+
+  idToDisplay(id: string, key: string) {
+    
+  }
 }

@@ -308,3 +308,4 @@ __pycache__/
 *.sqlite3
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,angular,database
+*.zip

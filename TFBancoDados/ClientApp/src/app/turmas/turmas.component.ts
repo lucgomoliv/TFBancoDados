@@ -96,4 +96,15 @@ export class TurmasComponent extends BaseComponent {
     });
     super.openModal();
   }
+
+  idToDisplay(id: string, key: string) {
+    if (this.options[key] !== undefined && (key === 'Professores' || key === 'Disciplinas')) {
+      switch (key) {
+        case 'Professores':
+          return this.options[key].filter(v => v['Id_Professor'] === Number.parseInt(id, 10))[0]['Nome'];
+        case 'Disciplinas':
+          return this.options[key].filter(v => v['Id_Materia'] === Number.parseInt(id, 10))[0]['Nome_Materia'];
+      }
+    } else { return id; }
+  }
 }

@@ -1,0 +1,36 @@
+Trabalho Final de Banco de Dados
+
+Curso: Sistemas de Informação
+Disciplina: Banco de Dados 2/2020
+Integrantes:
+    Ana Luiza Gonçalves Lourenço Barros
+    Douglas Barbosa da Silva
+    Lucas Gomes Oliveira
+    Stephanie Batista dos Santos
+
+Parte 3:
+    Tecnologia utilizada: 
+        ASP.NET CORE como back-end;
+        Angular como front-end;
+        NPM;
+        C#;
+    Versionamento: 
+        Git
+    Armazenamento de código fonte: 
+        Github
+    
+Descrição:
+    O programa oferece uma forma de manter as tabelas
+anteriormente descritas nas outras partes do trabalho
+disponibilizando-os num formato web;
+    A comunicação com o banco de dados é feita com o
+uso da API fornecida pelo back-end do ASP.NET Core,
+utilizando a linguagem C#, dessa forma o front-end,
+feito em Angular utilizando uma classe de serviço.
+
+Foi atualizado os comandos para criação do banco e 
+das tabelas para que se encaixasse melhor na 
+aplicação. (Novo arquivo presente no .zip com o 
+nome de 'Físico_1.4.txt')
+
+Github: https://github.com/lucgomoliv/TFBancoDados    

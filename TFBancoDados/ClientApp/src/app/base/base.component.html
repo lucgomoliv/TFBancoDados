@@ -12,7 +12,7 @@
     </tr>
     <tr *ngFor="let row of items">
       <td *ngFor="let column of headers">
-        {{row[column.name]}}
+        {{idToDisplay(row[column.name], column.name) || row[column.name]}}
         <svg *ngIf="column.name == headers[headers.length-1].name" (click)="delete(row[objectKeys(row)[0]])" width="1em"
           height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill float-right" fill="currentColor"
           xmlns="http://www.w3.org/2000/svg">
